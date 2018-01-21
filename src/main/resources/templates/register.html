@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" xlmns:th="http://thymeleaf.org/">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<div style="text-align: center;">
+    <h1>
+    <span th:text="${info}" ></span><br />
+    </h1>
+    <form method="post" th:object="${registerForm}" th:action="@{/register}">
+        <!-- * oznacza,że będzie szukać tego co w {} w 'klasie' nadrzędnej, tutaj registerForm -->
+        <span th:if="${#fields.hasErrors('login')}" th:errors="*{login}">Error</span><br />
+        <input type="text" th:field="*{login}" placeholder="Login">
+        <br/>
+        <span th:if="${#fields.hasErrors('password')}" th:errors="*{password}">Error</span><br />
+        <input type="text" th:field="*{password}" placeholder="Haslo">
+        <br/>
+        <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Error</span><br />
+        <input type="text" th:field="*{name}" placeholder="Imie i nazwisko">
+
+        <br/>
+        <input type="submit" value="wyslij">
+    </form>
+</div>
+
+</body>
+</html>

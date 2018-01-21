@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org/">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<p>Books Info:</p>
+<th:block th:each="auth1 : ${authorswithletter}">
+  <p th:text="${auth1.title}"></p>
+</th:block>
+
+</body>
+</html>
