@@ -35,6 +35,8 @@ public class BookOperationCotroller {
     public String addBookPost(@ModelAttribute("bookModel") BookModel bookModel, Model model){
 
         if(userService.isLogIn()){
+            
+//tutaj kod, który pobierze obiekt/model aktualnie zalogowaneo użytkownika
 
             bookRepository.save(bookModel);
             model.addAttribute("info", "pozycja dodana");
