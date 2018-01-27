@@ -27,7 +27,8 @@
         <div class="row">
             <div class="col-sm-12">
                 <div class="head_title text-center">
-                    <h1>Register</h1>
+                    <h1>Login</h1>
+                    <h2><span th:text="${info}"></span></h2>
                 </div><!-- End of head title -->
 
                 <div class="main_service_area">
@@ -36,29 +37,10 @@
                             <div class="col-sm-12">
 
                                 <!-- CONTENT -->
-                                <div class="col-md-6 col-md-offset-3">
-                                    <h5>
-                                        <span th:text="${info}"></span><br/>
-                                    </h5>
-                                    <form method="post" th:object="${registerForm}" th:action="@{/register}">
-                                        <!-- * oznacza,że będzie szukać tego co w {} w 'klasie' nadrzędnej, tutaj registerForm -->
-                                        <span th:if="${#fields.hasErrors('login')}"
-                                              th:errors="*{login}">Error</span><br/>
-                                        <input type="text" th:field="*{login}" placeholder="Login">
-                                        <br/>
-                                        <span th:if="${#fields.hasErrors('password')}"
-                                              th:errors="*{password}">Error</span><br/>
-                                        <input type="text" th:field="*{password}" placeholder="Haslo">
-                                        <br/>
-                                        <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Error</span><br/>
-                                        <input type="text" th:field="*{name}" placeholder="Imie i nazwisko">
+                            <p th:text="@{info}"></p>
+                                <a href="/mybooks">return</a>
 
-                                        <br/>
-                                        <input type="submit" value="wyslij">
-                                    </form>
-                                </div>
                                 <!-- CONTENT -->
-
                             </div>
                         </div>
                     </div><!-- End of single service area -->

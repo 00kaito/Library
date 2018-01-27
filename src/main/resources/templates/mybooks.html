@@ -27,7 +27,7 @@
         <div class="row">
             <div class="col-sm-12">
                 <div class="head_title text-center">
-                    <h1>Register</h1>
+                    <h1>My books</h1>
                 </div><!-- End of head title -->
 
                 <div class="main_service_area">
@@ -36,27 +36,37 @@
                             <div class="col-sm-12">
 
                                 <!-- CONTENT -->
-                                <div class="col-md-6 col-md-offset-3">
-                                    <h5>
-                                        <span th:text="${info}"></span><br/>
-                                    </h5>
-                                    <form method="post" th:object="${registerForm}" th:action="@{/register}">
-                                        <!-- * oznacza,że będzie szukać tego co w {} w 'klasie' nadrzędnej, tutaj registerForm -->
-                                        <span th:if="${#fields.hasErrors('login')}"
-                                              th:errors="*{login}">Error</span><br/>
-                                        <input type="text" th:field="*{login}" placeholder="Login">
-                                        <br/>
-                                        <span th:if="${#fields.hasErrors('password')}"
-                                              th:errors="*{password}">Error</span><br/>
-                                        <input type="text" th:field="*{password}" placeholder="Haslo">
-                                        <br/>
-                                        <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Error</span><br/>
-                                        <input type="text" th:field="*{name}" placeholder="Imie i nazwisko">
+                                <div class="col-md-10 col-md-offset-1">
+                                    <h5><span th:text="${info}"></span></h5><br/>
 
-                                        <br/>
+                                    <form method="post" th:object="${bookModel}" th:action="@{/mybooks}">
+                                        <input type="text" th:name="title" th:field="*{title}" placeholder="title">
+                                        <input type="text" th:name="author" th:field="*{author}" placeholder="author">
+                                        <input type="number" th:name="pages" th:field="*{pages}" placeholder="pages">
                                         <input type="submit" value="wyslij">
                                     </form>
                                 </div>
+
+                                <table class="table">
+                                    <thead>
+                                    <tr>
+                                        <th>Tite</th>
+                                        <th>Author</th>
+                                        <th>Pages</th>
+                                        <th>Action</th>
+                                    </tr>
+                                    </thead>
+                                    <tr th:each="books : ${bookList}">
+                                        <td th:text="${books.title}">
+                                        </td>
+                                        <td th:text="${books.author}">
+                                        </td>
+                                        <td th:text="${books.pages}">
+                                        </td>
+                                        <td><a th:href="@{__${#httpServletRequest.requestURI}__/?del=__${books.id}__}">REMOVE</a>
+                                        </td>
+                                    </tr>
+                                </table>
                                 <!-- CONTENT -->
 
                             </div>

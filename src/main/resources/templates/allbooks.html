@@ -7,7 +7,7 @@
 <html class="no-js lt-ie9" lang=""> <![endif]-->
 <!--[if gt IE 8]><!-->
 <html class="no-js" lang=""> <!--<![endif]-->
-<th:block th:include="parts/head :: meta"/>
+<th:block th:include="parts/head :: meta" />
 
 <body data-spy="scroll" data-target=".navbar-collapse">
 <!--[if lt IE 8]>
@@ -18,7 +18,7 @@
     <div class='loaded'>&nbsp;</div>
 </div>
 
-<th:block th:include="parts/head :: header"/>
+<th:block th:include="parts/head :: header" />
 
 
 <!-- Service Section -->
@@ -27,28 +27,39 @@
         <div class="row">
             <div class="col-sm-12">
                 <div class="head_title text-center">
-                    <h1>Login</h1>
-                    <h5><span th:text="${info}"></span></h5>
+                    <h1>List of all books</h1>
                 </div><!-- End of head title -->
 
                 <div class="main_service_area">
                     <div class="single_service_area">
                         <div class="row">
                             <div class="col-sm-12">
-                                <!-- CONTENT -->
-
-                                <div class="info-form">
-                                    <form method="post" th:action="@{/}"
-                                          class="form-inline justify-content-center">
-                                        <input type="text" th:name="login" placeholder="Login">
-                                        <br/>
-                                        <input type="text" type="password" th:name="password" placeholder="Haslo">
-                                        <br/>
-                                        <input type="submit" value="wyslij">
-                                    </form>
-                                </div>
 
                                 <!-- CONTENT -->
+                                <table class="table">
+                                    <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>Title</th>
+                                        <th>Author</th>
+                                        <th>Pages</th>
+                                        <th>User name</th>
+                                    </tr>
+                                    </thead>
+                                    <tr th:each="books, iterStat : ${listOfBooks}">
+                                        <th scope="row" th:text="${iterStat.count}"></th>
+                                        <td th:text="${books.title}">
+                                        </td>
+                                        <td th:text="${books.author}">
+                                        </td>
+                                        <td th:text="${books.pages}">
+                                        </td>
+                                        <td th:text="${books.who.name}">
+                                        </td>
+                                    </tr>
+                                </table>
+                                <!-- CONTENT -->
+
                             </div>
                         </div>
                     </div><!-- End of single service area -->
@@ -59,7 +70,7 @@
 </section><!-- End of Service Section -->
 
 <!-- footer Section -->
-<th:block th:include="parts/bottom :: footer"/>
+<th:block th:include="parts/bottom :: footer" />
 
 </body>
 </html>

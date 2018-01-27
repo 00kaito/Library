@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.validation.Valid;
+import java.util.List;
 
 //co jeden wiekszy model/modyl tworzymy nowy kontroller
 @Controller
@@ -25,13 +26,13 @@ public class LoginController {
     @Autowired
     UserService userService;
 
-    @GetMapping("/login")
+    @GetMapping("/")
     public String loginGet() {
         return "login";
     }
 
     //walidować za pomocą @ można tylko modele
-    @PostMapping("/login")
+    @PostMapping("/")
     public String loginPost(@RequestParam("login") String login,
                             @RequestParam("password") String password,
                             Model model) {
@@ -39,11 +40,22 @@ public class LoginController {
         if(isCorrectData){
             userService.setLogin(login);
             userService.setLogIn(true);
-            return "login";
+            UserModel userModel = userRepository.findByLogin(login).get(0);
+            userService.setId(userModel.getId());
+            System.out.println("ZALOGOWANO ------- "+userModel.toString());
+            userService.setUserModel(userModel);
+            model.addAttribute("info", "zalogowano");
+            return "redirect:/mybooks";
         }else{
             model.addAttribute("info", "Błędne dane logowania!");
             return "login";
         }
+    }
+
+    @GetMapping("/index")
+    public String indexRedirect(){
+
+        return "redirect:/";
     }
 
     @GetMapping("/register")
@@ -72,5 +84,11 @@ public class LoginController {
             model.addAttribute("info", "Nowe konto zostało założone");
             return "register";
         }
+    }
+
+    @GetMapping("/logout")
+    public String logout(){
+        userService.setLogIn(false);
+        return "redirect:/";
     }
 }

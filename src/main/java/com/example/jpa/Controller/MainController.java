@@ -22,7 +22,7 @@ public class MainController {
     UserService userService;
 
 
-    @GetMapping("/")
+    @GetMapping("/test")
     @ResponseBody
     public String index() {
         UserModel model = new UserModel();
