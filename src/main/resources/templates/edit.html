@@ -1,0 +1,66 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+
+<!--[if lt IE 7]>
+<html class="no-js lt-ie9 lt-ie8 lt-ie7" lang=""> <![endif]-->
+<!--[if IE 7]>
+<html class="no-js lt-ie9 lt-ie8" lang=""> <![endif]-->
+<!--[if IE 8]>
+<html class="no-js lt-ie9" lang=""> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js" lang=""> <!--<![endif]-->
+<th:block th:include="parts/head :: meta"/>
+
+<body data-spy="scroll" data-target=".navbar-collapse">
+<!--[if lt IE 8]>
+<p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade
+    your browser</a> to improve your experience.</p>
+<![endif]-->
+<div class='preloader'>
+    <div class='loaded'>&nbsp;</div>
+</div>
+
+<th:block th:include="parts/head :: header"/>
+
+
+<!-- Service Section -->
+<section id="service" class="service sections margin-top-120">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="head_title text-center">
+                    <h1>My books</h1>
+                </div><!-- End of head title -->
+
+                <div class="main_service_area">
+                    <div class="single_service_area">
+                        <div class="row">
+                            <div class="col-sm-12">
+
+                                <!-- CONTENT -->
+                                <div class="col-md-10 col-md-offset-1">
+                                    <h5><span th:text="${info}"></span></h5><br/>
+
+                                    <form method="post" th:object="${bookModel}" th:action="@{/mybooks/update}">
+                                        <input type="text" th:name="title" th:field="*{title}" placeholder="title">
+                                        <input type="text" th:name="author" th:field="*{author}" placeholder="author">
+                                        <input type="number" th:name="pages" th:field="*{pages}" placeholder="pages">
+                                        <input type="hidden" th:name="id" th:field="*{id}">
+                                        <input type="submit" value="wyslij">
+                                    </form>
+                                </div>
+                                <!-- CONTENT -->
+
+                            </div>
+                        </div>
+                    </div><!-- End of single service area -->
+                </div>
+            </div><!-- End of col-sm-12 -->
+        </div><!-- End of row -->
+    </div><!-- End of Container -->
+</section><!-- End of Service Section -->
+
+<!-- footer Section -->
+<th:block th:include="parts/bottom :: footer"/>
+
+</body>
+</html>

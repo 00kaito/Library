@@ -1,0 +1,79 @@
+<!doctype html>
+<!--[if lt IE 7]>
+<html class="no-js lt-ie9 lt-ie8 lt-ie7" lang=""> <![endif]-->
+<!--[if IE 7]>
+<html class="no-js lt-ie9 lt-ie8" lang=""> <![endif]-->
+<!--[if IE 8]>
+<html class="no-js lt-ie9" lang=""> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js" lang=""> <!--<![endif]-->
+<th:block th:include="parts/head :: meta"/>
+
+<body data-spy="scroll" data-target=".navbar-collapse">
+<!--[if lt IE 8]>
+<p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade
+    your browser</a> to improve your experience.</p>
+<![endif]-->
+<div class='preloader'>
+    <div class='loaded'>&nbsp;</div>
+</div>
+<th:block th:include="parts/head :: header"/>
+
+
+<!-- Service Section -->
+<section id="service" class="service sections margin-top-120">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="head_title text-center">
+                    <h1>Available to borrow</h1>
+                </div><!-- End of head title -->
+
+                <div class="main_service_area">
+                    <div class="single_service_area">
+                        <div class="row">
+                            <div class="col-sm-12">
+
+                                <!-- CONTENT -->
+                                <table class="table">
+                                    <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>Title</th>
+                                        <th>Author</th>
+                                        <th>Pages</th>
+                                        <th>User name</th>
+                                        <th>Borrow</th>
+                                    </tr>
+                                    </thead>
+                                    <tr th:each="book, iterStat: ${listOfAvailable}">
+                                        <th scope="row" th:text="${iterStat.count}"></th>
+                                        <td th:text="${book.title}">
+                                        </td>
+                                        <td th:text="${book.author}">
+                                        </td>
+                                        <td th:text="${book.pages}">
+                                        </td>
+                                        <td th:text="${book.who.name}">
+                                        </td>
+                                        <td><a th:href="@{__${#httpServletRequest.requestURI}__/__${book.id}__}">Save to
+                                            me</a>
+                                        </td>
+                                    </tr>
+                                </table>
+                                <!-- CONTENT -->
+
+                            </div>
+                        </div>
+                    </div><!-- End of single service area -->
+                </div>
+            </div><!-- End of col-sm-12 -->
+        </div><!-- End of row -->
+    </div><!-- End of Container -->
+</section><!-- End of Service Section -->
+
+<!-- footer Section -->
+<th:block th:include="parts/bottom :: footer"/>
+
+</body>
+</html>
